@@ -68,4 +68,31 @@ label start:
     "Наконец из темноты появляется она"
     show eve happy sprite full with dissolve
     e "Привет братец!!" 
+    e "Я тут в целом давно, но мне не страшно"
+    e "Они не злые как нам рассказывали родители"
+    hide eve happy sprite full with fade
+    show eve_monsters3 with dissolve
+    e "Тут на самом деле очень даже не плохо!"
+    show sqwore_angry_sprite with dissolve
+    s "Но дома нас ждет мама"
+    hide sqwore_angry_sprite with dissolve
+    e "хмммм"
+    show eve happy sprite full with dissolve
+    e "Ладно тогда давай возвращаться домой"
+    hide eve_monsters3 with fade
+    hide eve happy sprite full with fade
+    show black_bg with dissolve
+    "Посадите за ПК второго игрока"
+    "После нажмите лкм"
+    show eve happy spite top with fade
+    e "Как же жаль что этот бедный малый не знает что это ложь"
+    e "Моя цель оставить его тут навечно"
+    e "Всего пара правильно нажатых кнопок и он будет тут навечно"
+    e "Ой, каких еще кнопок я же не в игре"
+    e "ХИХИ"
+    hide eve happy spite top with fade
+    scene black
+    "Мини игра пин понг"
+    jump demo_minigame_pong
+
     return
