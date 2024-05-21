@@ -67,5 +67,5 @@ label start:
     show black_bg with fade
     "Наконец из темноты появляется она"
     show eve happy sprite full with dissolve
-    e "Привет братец!"
+    e "Привет братец!!" 
     return
