@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 86: end of line expected.
-    jump eve lor
-             ^
-
-File "game/script.rpy", line 87: expected statement.
-    lable eve lor:
-                 ^
+File "game/script.rpy", line 113: expected ':' not found.
+    else
+        ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue May 21 21:31:08 2024
+Fri May 24 00:51:21 2024

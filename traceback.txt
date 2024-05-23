@@ -1,45 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/pin_pong.rpy", line 200, in script
-    python:
-  File "game/pin_pong.rpy", line 202, in <module>
-    winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
-OSError: Couldn't find file 'images/pin_pong/pong_beep.wav'.
+  File "game/script.rpy", line 114, in script
+    S "Нет, кажется я ничего не находил"
+Exception: Sayer 'S' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/pin_pong.rpy", line 200, in script
-    python:
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/pin_pong.rpy", line 202, in <module>
-    winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\display\core.py", line 2165, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\display\core.py", line 3022, in interact_core
-    renpy.audio.audio.periodic()
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1205, in periodic
-    raise_(exc[0], exc[1], exc[2])
-  File "lib/python3.9/future/utils/__init__.py", line 444, in raise_
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1183, in periodic_thread_main
-    periodic_pass()
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1125, in periodic_pass
-    c.periodic()
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\audio\audio.py", line 534, in periodic
-    topf = load(filename)
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\audio\audio.py", line 72, in load
-    rv = renpy.loader.load(fn, directory="audio")
-  File "F:\renpy\renpy-8.2.1-sdk\renpy\loader.py", line 672, in load
-    raise IOError("Couldn't find file '%s'." % name)
-OSError: Couldn't find file 'images/pin_pong/pong_beep.wav'.
+  File "game/script.rpy", line 114, in script
+    S "Нет, кажется я ничего не находил"
+  File "F:\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 2557, in execute
+    Say.execute(self)
+  File "F:\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 575, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "F:\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 464, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'S' is not defined.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.1.24030407
 novella 1.0
-Wed May 22 00:37:08 2024
+Fri May 24 00:54:58 2024

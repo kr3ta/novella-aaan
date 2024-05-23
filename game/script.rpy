@@ -64,13 +64,12 @@ label start:
             "Упс... попробуй другой вариант"
             return
 
-    show black_bg with fade
+    show white_bg with fade
     "Наконец из темноты появляется она"
     show eve happy sprite full with dissolve
     e "Привет братец!!" 
     e "Я тут в целом давно, но мне не страшно"
     e "Они не злые как нам рассказывали родители"
-    hide eve happy sprite full with fade
     show eve_monsters3 with dissolve
     e "Тут на самом деле очень даже не плохо!"
     show sqwore_angry_sprite with dissolve
@@ -79,20 +78,37 @@ label start:
     e "хмммм"
     show eve happy sprite full with dissolve
     e "Ладно тогда давай возвращаться домой"
-    hide eve_monsters3 with fade
-    hide eve happy sprite full with fade
-    show black_bg with dissolve
-    "Посадите за ПК второго игрока"
-    "После нажмите лкм"
-    show eve happy spite top with fade
-    e "Как же жаль что этот бедный малый не знает что это ложь"
-    e "Моя цель оставить его тут навечно"
-    e "Всего пара правильно нажатых кнопок и он будет тут навечно"
-    e "Ой, каких еще кнопок я же не в игре"
-    e "ХИХИ"
+    show white_bg
+    e "(Как же жаль что этот бедный малый не знает что это ложь)"
+    e "(Моя цель оставить его тут навечно)"
+    e "(Всего пара правильно нажатых кнопок и он будет тут навечно)"
+    e "(Ой, каких еще кнопок я же не в игре)"
+    e "(ХИХИ)"
     hide eve happy spite top with fade
-    scene black
-    "Мини игра пин понг"
-    jump demo_minigame_pong
+    scene white_bg with dissolve
+    show eve happy sprite full with dissolve
+    e "Пошли домой быстрее время не ждет"
+    hide eve happy sprite full with dissolve
+    "Ребята долго выбирались из окрестностей замка"
+    "Наконец они добрались до выхода, который был закрыт огромной дверью на ключ"
+    show eve happy sprite full with dissolve
+    e "Даня у тебя же есть ключ?"
+    if points == 1:
+        s "Да, кажется я нашел его пока шел сюда"
+        hide eve happy sprite full
+        show eve happy spite top
+        e "НЕТ"
+        e "Ты не удешь от сюда"
+        s "Но почему??"
+        s "Что с тобой??"
+        e "ТЫ НЕ ДОЛЖЕН ПОКИНУТЬ ЭТО МЕСТО"
+        e "ТОЛЬКО ОДОЛЕВ МЕНЯ ТЫ СМОЖЕШЬ ВЫБРАТЬСЯ"
+        hide eve happy spite top
 
-    return
+        "Мини игра пин понг"
+        jump demo_minigame_pong
+
+    else:
+        s "Нет, кажется я ничего не находил"
+        e "ХАХА Я ТАК И ЗНАЛА ЧТО СМОГУ ОСТАВИТЬ ТЕБЯ ТУТ НАВСЕГДА"
+        return

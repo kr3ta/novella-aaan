@@ -13,17 +13,17 @@ init:
                 # Некоторые таблицы отображения, которые мы используем.
                 self.paddle = Image("images/pin_pong/pong.png")
                 self.ball = Image("images/pin_pong/pong_ball.png")
-                self.player = Text(_("Игрок"), size=36)
-                self.eileen = Text(_("Эвелина"), size=36)
-                self.ctb = Text(_("Игра началась"), size=36)
+                self.player = Text(_("Данил"), size=48)
+                self.eileen = Text(_("Эвелина"), size=48)
+                self.ctb = Text(_("FIGHT"), size=48, color="000000")
 
                 # Размеры некоторых изображений
-                self.PADDLE_WIDTH = 8
-                self.PADDLE_HEIGHT = 79
-                self.BALL_WIDTH = 15
-                self.BALL_HEIGHT = 15
-                self.COURT_TOP = 108
-                self.COURT_BOTTOM = 543
+                self.PADDLE_WIDTH = 16
+                self.PADDLE_HEIGHT = 180
+                self.BALL_WIDTH = 30
+                self.BALL_HEIGHT = 30
+                self.COURT_TOP = 200
+                self.COURT_BOTTOM = 950
 
                 # Если мяч застрял в весло.
                 self.stuck = True
@@ -33,14 +33,14 @@ init:
                 self.computery = self.playery
 
                 # Скорость компьютера.
-                self.computerspeed = 350.0
+                self.computerspeed = 700.0
 
 # Положение, дентал-положение и скорость# мяч.
                 self.bx = 88
                 self.by = self.playery
                 self.bdx = .5
                 self.bdy = .5
-                self.bspeed = 300.0
+                self.bspeed = 800.0
 
                 # Время прошлого рендера кадра.
                 self.oldst = None
@@ -97,7 +97,7 @@ init:
                 # Это берет весло, и проверяет отскакивает.
                 def paddle(px, py, hotside):
 
-                    pi = renpy.render(self.paddle, 800, 600, st, at)
+                    pi = renpy.render(self.paddle, 1920, 1080, st, at)
 
                     r.blit(pi, (int(px), int(py - self.PADDLE_HEIGHT / 2)))
 
@@ -119,39 +119,39 @@ init:
                             self.bspeed *= 1.10
 
                 # Нарисуйте два весла.
-                paddle(68, self.playery, 68 + self.PADDLE_WIDTH)
-                paddle(724, self.computery, 724)
+                paddle(286, self.playery, 286 + self.PADDLE_WIDTH)
+                paddle(1600, self.computery, 1600)
 
             # Розыгрыш мяча.
-                ball = renpy.render(self.ball, 800, 600, st, at)
+                ball = renpy.render(self.ball, 1920, 1080, st, at)
                 r.blit(ball, (int(self.bx - self.BALL_WIDTH / 2),
                             int(self.by - self.BALL_HEIGHT / 2)))
 
                 # Показать имена игроков.
-                player = renpy.render(self.player, 800, 600, st, at)
-                r.blit(player, (20, 25))
+                player = renpy.render(self.player, 1920, 1080, st, at)
+                r.blit(player, (250, 65))
 
                 # Имя Айлин.
-                eileen = renpy.render(self.eileen, 800, 600, st, at)
+                eileen = renpy.render(self.eileen, 1920, 1080, st, at)
                 ew, eh = eileen.get_size()
-                r.blit(eileen, (790 - ew, 25))
+                r.blit(eileen, (1680 - ew, 65))
 
                 # Показать "Нажмите, чтобы начать" метки.
                 if self.stuck:
-                    ctb = renpy.render(self.ctb, 800, 600, st, at)
+                    ctb = renpy.render(self.ctb, 1920, 1080, st, at)
                     cw, ch = ctb.get_size()
-                    r.blit(ctb, (400 - cw / 2, 30))
+                    r.blit(ctb, (960 - cw / 2, 54))
 
 
 
                 if self.bx < -200:
-                    self.winner = "eileen"
+                    self.winner = "Эвелина"
 
 
                     renpy.timeout(0)
 
-                elif self.bx > 1000:
-                    self.winner = "player"
+                elif self.bx > 2000:
+                    self.winner = "Даня"
                     renpy.timeout(0)
 
 
@@ -171,8 +171,8 @@ init:
                     self.stuck = False
 
                 # Установить положение ракетки игрока
-                y = max(y, self.COURT_TOP)
-                y = min(y, self.COURT_BOTTOM)
+                y = max(y, self.COURT_TOP, 300)
+                y = min(y, self.COURT_BOTTOM, 870)
                 self.playery = y
 
 
@@ -199,25 +199,40 @@ label demo_minigame_pong:
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
 
     scene black
-    show eileen 
 
     window show None
 
 
     if winner == "Эвелина":
-        e "Я выиграла!"
+        scene castle_top with fade
+        show eve happy sprite full with dissolve
+        e "Я выиграла! АХАХАХХАХАХАХАХ"
+        e "Теперь ты не сможешь от сюда сбежать"
+        pass
 
     else:
+        scene white_bg
+        show eve_sad_top with dissolve
+        e "НЕЕЕЕЕЕЕТ"
+        hide eve_sad_top
+        show eve_sad with dissolve
+        e "ТЫ НЕ ДОЛЖЕН БЫЛ ЭТО СДЕЛАТЬ"
+        hide eve_sad with dissolve
+        "Кажется тебе удалось спастись..."
+        s "Стоп что"
+        s "Почему тут звук будильника???"
+        scene sqwore_room
+        s "?????????????"
+        show sqwore_angry_sprite with fade
+        s "В чем дело???"
+        hide sqwore_angry_sprite with fade
+        "Ты оказался в своей кровати"
+        show sqwore happy sprite with dissolve
+        s "Так это был сон?"
+        "Это был сон"
+        "Эвелина была дома и спала в своей комнате"
+        scene white_bg
+        "Поставте оценку пж"
+        pass
 
-
-        e "Ты победил! Поздравляю."
-
-
-    menu:
-        e "Давай еще раз сыграем?"
-
-        "Конечно.":
-            jump demo_minigame_pong
-        "Не спасибо.":
-            pass
 
