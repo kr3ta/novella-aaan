@@ -13,8 +13,8 @@ init:
                 # Некоторые таблицы отображения, которые мы используем.
                 self.paddle = Image("images/pin_pong/pong.png")
                 self.ball = Image("images/pin_pong/pong_ball.png")
-                self.player = Text(_("Данил"), size=48)
-                self.eileen = Text(_("Эвелина"), size=48)
+                self.player = Text(_("Эвелина"), size=48)
+                self.eileen = Text(_("Бот"), size=48)
                 self.ctb = Text(_("FIGHT"), size=48, color="000000")
 
                 # Размеры некоторых изображений
@@ -129,12 +129,12 @@ init:
 
                 # Показать имена игроков.
                 player = renpy.render(self.player, 1920, 1080, st, at)
-                r.blit(player, (250, 65))
+                r.blit(player, (230, 65))
 
                 # Имя Айлин.
                 eileen = renpy.render(self.eileen, 1920, 1080, st, at)
                 ew, eh = eileen.get_size()
-                r.blit(eileen, (1680 - ew, 65))
+                r.blit(eileen, (1610 - ew, 65))
 
                 # Показать "Нажмите, чтобы начать" метки.
                 if self.stuck:
@@ -145,13 +145,13 @@ init:
 
 
                 if self.bx < -200:
-                    self.winner = "Эвелина"
+                    self.winner = "Бот"
 
 
                     renpy.timeout(0)
 
                 elif self.bx > 2000:
-                    self.winner = "Даня"
+                    self.winner = "Эвелина"
                     renpy.timeout(0)
 
 
@@ -182,11 +182,7 @@ init:
                     raise renpy.IgnoreEvent()
 
 
-label demo_minigame:
-
-    e "Да победит сильнейший!"
-
-label demo_minigame_pong:
+label pong:
 
     window hide None
 
@@ -203,36 +199,13 @@ label demo_minigame_pong:
     window show None
 
 
-    if winner == "Эвелина":
+    if winner == "Бот":
         scene castle_top with fade
         show eve happy sprite full with dissolve
         e "Я выиграла! АХАХАХХАХАХАХАХ"
         e "Теперь ты не сможешь от сюда сбежать"
         pass
-
     else:
-        scene white_bg
-        show eve_sad_top with dissolve
-        e "НЕЕЕЕЕЕЕТ"
-        hide eve_sad_top
-        show eve_sad with dissolve
-        e "ТЫ НЕ ДОЛЖЕН БЫЛ ЭТО СДЕЛАТЬ"
-        hide eve_sad with dissolve
-        "Кажется тебе удалось спастись..."
-        s "Стоп что"
-        s "Почему тут звук будильника???"
-        scene sqwore_room
-        s "?????????????"
-        show sqwore_angry_sprite with fade
-        s "В чем дело???"
-        hide sqwore_angry_sprite with fade
-        "Ты оказался в своей кровати"
-        show sqwore happy sprite with dissolve
-        s "Так это был сон?"
-        "Это был сон"
-        "Эвелина была дома и спала в своей комнате"
-        scene white_bg
-        "Поставте оценку пж"
-        pass
+        jump pong_p2
 
 

@@ -2,9 +2,11 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 113: expected ':' not found.
-    else
-        ^
+The label pong is defined twice, at File "game/pin_pong.rpyc", line 184:
+
+and File "game/pin_pong copy.rpy", line 185:
+label pong:
+
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Fri May 24 00:51:21 2024
+Mon May 27 20:22:22 2024

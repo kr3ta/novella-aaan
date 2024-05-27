@@ -106,7 +106,8 @@ label start:
         hide eve happy spite top
 
         "Мини игра пин понг"
-        jump demo_minigame_pong
+        "Необходим второй  игрок для игры за Эвелину"
+        jump pong
 
     else:
         s "Нет, кажется я ничего не находил"
