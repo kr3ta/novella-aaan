@@ -10,7 +10,7 @@ init:
 
                 renpy.Displayable.__init__(self)
 
-                # Некоторые таблицы отображения, которые мы используем.
+                # Отображение
                 self.paddle = Image("images/pin_pong/pong.png")
                 self.ball = Image("images/pin_pong/pong_ball.png")
                 self.player = Text(_("Эвелина"), size=48)
@@ -25,17 +25,17 @@ init:
                 self.COURT_TOP = 200
                 self.COURT_BOTTOM = 950
 
-                # Если мяч застрял в весло.
+                # Если мяч застрял в ракетке
                 self.stuck = True
 
-                # Позиции двух затворов.
+                # Позиции двух затворов
                 self.playery = (self.COURT_BOTTOM - self.COURT_TOP) / 2
                 self.computery = self.playery
 
                 # Скорость компьютера.
                 self.computerspeed = 700.0
 
-# Положение, дентал-положение и скорость# мяч.
+                # Положение, дентал-положение и скорость мяча.
                 self.bx = 88
                 self.by = self.playery
                 self.bdx = .5
@@ -51,11 +51,10 @@ init:
             def visit(self):
                 return [ self.paddle, self.ball, self.player, self.eileen, self.ctb ]
 
-# Пересчитывает положение мяча, ручками отбивается, и
-# рисует на экране.
+            # Пересчитывает положение мяча, ракеткой отбивается, и рисует на экране.
             def render(self, width, height, st, at):
 
-                # Объект отображения, мы будем рисовать в.
+                # Объект отображения, мы будем рисовать в
                 r = renpy.Render(width, height)
 
                 # Выяснить время, прошедшее с предыдущего кадра.
@@ -65,7 +64,7 @@ init:
                 dtime = st - self.oldst
                 self.oldst = st
 
-                #Выяснить, где мы хотим, чтобы переместить мяч.
+                # Выяснить, где мы хотим, чтобы переместился мяч
                 speed = dtime * self.bspeed
                 oldbx = self.bx
 
@@ -75,15 +74,14 @@ init:
                     self.bx += self.bdx * speed
                     self.by += self.bdy * speed
 
-                # Переместить весло компьютера. Он хочет пойти в self.by но
-                # может быть ограничена ограничить его скорость.
+                # Переместить ракетку за компьютер
                 cspeed = self.computerspeed * dtime
                 if abs(self.by - self.computery) <= cspeed:
                     self.computery = self.by
                 else:
                     self.computery += cspeed * (self.by - self.computery) / abs(self.by - self.computery)
 
-                # Отскакивают от верхней.
+                # Отскакивание от верхней части
                 ball_top = self.COURT_TOP + self.BALL_HEIGHT / 2
                 if self.by < ball_top:
                     self.by = ball_top + (ball_top - self.by)
@@ -94,7 +92,7 @@ init:
                     self.by = ball_bot - (self.by - ball_bot)
                     self.bdy = -self.bdy
 
-                # Это берет весло, и проверяет отскакивает.
+                # Проверка
                 def paddle(px, py, hotside):
 
                     pi = renpy.render(self.paddle, 1920, 1080, st, at)
@@ -118,7 +116,7 @@ init:
                         if hit:
                             self.bspeed *= 1.10
 
-                # Нарисуйте два весла.
+                # Отрисовка
                 paddle(286, self.playery, 286 + self.PADDLE_WIDTH)
                 paddle(1600, self.computery, 1600)
 
@@ -131,7 +129,6 @@ init:
                 player = renpy.render(self.player, 1920, 1080, st, at)
                 r.blit(player, (230, 65))
 
-                # Имя Айлин.
                 eileen = renpy.render(self.eileen, 1920, 1080, st, at)
                 ew, eh = eileen.get_size()
                 r.blit(eileen, (1610 - ew, 65))
@@ -157,7 +154,7 @@ init:
 
                 renpy.redraw(self, 0)
 
-                # Return the Render object.
+                # Вернуть рендер
                 return r
 
             # Обрабатывает события.
@@ -165,8 +162,6 @@ init:
 
                 import pygame
 
-                # # Выбирете вниз == начать игру, установив застрял
-# ложные.
                 if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                     self.stuck = False
 
@@ -186,10 +181,10 @@ label pong:
 
     window hide None
 
-    # Put up the pong background, in the usual fashion.
+    # Добавить фон
     scene bg pong field
 
-    # Run the pong minigame, and determine the winner.
+    # Запустить пинг понг и выбрать победителя
     python:
         ui.add(PongDisplayable())
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
@@ -199,13 +194,15 @@ label pong:
     window show None
 
 
-    if winner == "Бот":
+    if winner == "Эвелина":
+        #Если выиграл второй игрок то плохая концовка
         scene castle_top with fade
         show eve happy sprite full with dissolve
         e "Я выиграла! АХАХАХХАХАХАХАХ"
         e "Теперь ты не сможешь от сюда сбежать"
         pass
     else:
+        # Переход во второй этап если проиграна
         jump pong_p2
 
 
