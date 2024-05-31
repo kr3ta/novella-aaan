@@ -21,7 +21,7 @@
 ![image](https://github.com/kr3ta/novella-aaan/assets/169206146/72d54c1d-ab4d-4cd7-8c7e-4c9f3f99ea22)
 Скриншот меню настроек
 ![image](https://github.com/kr3ta/novella-aaan/assets/169206146/80b72595-0778-43ae-9cbe-d9d525f21284)
-Скриншот меню фобра действия
+Скриншот меню выбора действия
 ![image](https://github.com/kr3ta/novella-aaan/assets/169206146/0be8518e-35da-43ef-bd00-77b611777c52)
 Скриншот мини игры
 ![image](https://github.com/kr3ta/novella-aaan/assets/169206146/76c50bfe-27bf-410a-bc6b-95fee5a33259)
