@@ -1,6 +1,6 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <renpy.display.im.Image object ('gui/game_menu.png') at 0x0000000005658ac0>:
+While loading <renpy.display.im.Image object ('gui/game_menu.png') at 0x00000000056cb1f0>:
 OSError: Couldn't find file 'gui/game_menu.png'.
 
 -- Full Traceback ------------------------------------------------------------
@@ -60,7 +60,7 @@ Full traceback:
     raise IOError("Couldn't find file '%s'." % name)
 OSError: Couldn't find file 'gui/game_menu.png'.
 
-Windows-10-10.0.19045 AMD64
+Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
 novella 1.0
-Mon May 27 20:24:35 2024
+Fri Jun  6 21:35:07 2025

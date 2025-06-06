@@ -1,115 +1,70 @@
 ﻿# Вы можете расположить сценарий своей игры в этом файле.
 
 # Определение персонажей игры.
-define s = Character('Данил', color="#00fa9a")
-define e = Character('Эвелина', color="#1dacd6")
+define s = Character('Тестовый игрок 1', color="#8b00ff")
+define e = Character('Персонаж 2', color="#FF0000")
 
 # Игра начинается здесь:
 label start:
 
-    define points = 0
+    define points = 0 # Поинты для перехода
 
     scene black_bg
 
-    "Все изображения не имеют авторского права и сгенерированны нейросетью Playground"
+    "Все изображения не имеют авторского права"
+    "Даная игра создана для учебной практики и демонстрации движка"
 
-    scene castle_bottom with fade
-    s "БЕЖИМ"
+    scene red_scene_bg with fade
+    "Демонстрация появления сцены"
+    s "Ого я персонаж и я могу говорить"
+    show eva_01_full with fade
+    s "Кстати вот я"
+    hide eva_01_full with fade
+    s "А теперь меня нет"
+    s "Но могу встать ближе"
+    show eva_01_prof with dissolve 
+    s "БУ"
+    hide eva_01_prof with fade
 
-    scene sqwore_run_monster_bg with fade
-    "Это Даня"
-    "Прямо сейчас он бежит спасать свою сестру от ужасных монстров"
+    scene green_scene_bg with fade
+    "Сейчас покажем второго персонажа"
+    show eva_02_full with dissolve
+    e "Вот и я"
+    e "Кстати для зачтенной практики нам необходима какая-то игра на двоих"
+    e "По этому предложу тебе поиграть со мной в пинг понг"
+    hide eva_02_full
+    show eva_02_prof with fade
+    e "Но для того чтобы сделать это чуть длиннее сначала тебе предстоит...."
+    e "Ответить на 1 вопрос"
+    e "Отвечаешь - проходишь
+    Нет - проигрываешь сразу"
+    e "Вопрос: Какое количество сезонов в оригинальном сериале Neon Genesis Evangelion"
 
     menu:
-        "Бежать прямо":
-            "Справа появился огромный камень"
-            s "Фух.... чуть не врезался"
-        "Попробовать бежать направо":
-            s "АЙ"
-            "Даня врезался об неожиданно появившийся камень"
-            "(Напоминание: Попробовать - не значит сделать удачно)"
-            "Кстати это плохая концовка, вы проиграли"
-            return
-
-    scene castle_bottom with fade
-    "На горизонте наконец появился пункт назначения..."
-    show sqwore_angry_sprite with dissolve
-    s "Вот он"
-    s "Наконец..."
-    s "Только куда идти...."
-
-    menu:
-        "Идти прямо":
-            hide sqwore_angry_sprite
-            scene castle_top with fade
-            show sqwore happy sprite with dissolve
+        "26":
             s "Видимо верно"
-            "Даня наступил на что-то и опустил голову"
-            s "О зажигалка. Что она тут делает?"
-            s "Ладно, лишней не будет"
-            "Он положил зажигалку в карман и побежал дальше"
-            hide sqwore happy sprite with dissolve
             $ points += 1
-        "Итди налево":
-            hide sqwore_angry_sprite
+        "25":
             scene black_bg with fade
-            "Впереди был темный проход"
-            show sqwore_angry_sprite with dissolve
-            s "Ничего не вижу"
-            hide sqwore_angry_sprite with dissolve
-            "Спустя какое-то время..."
-        "Идти направо":
+            "А вот правильно это или нет узнаем когда начнется игра"
+        "12":
             scene black_bg with fade
             s "АААААААААААААААААААААААААААААААААА"
             "Упс... попробуй другой вариант"
             return
 
-    show white_bg with fade
-    "Наконец из темноты появляется она"
-    show eve happy sprite full with dissolve
-    e "Привет братец!!" 
-    e "Я тут в целом давно, но мне не страшно"
-    e "Они не злые как нам рассказывали родители"
-    show eve_monsters3 with dissolve
-    e "Тут на самом деле очень даже не плохо!"
-    show sqwore_angry_sprite with dissolve
-    s "Но дома нас ждет мама"
-    hide sqwore_angry_sprite with dissolve
-    e "хмммм"
-    show eve happy sprite full with dissolve
-    e "Ладно тогда давай возвращаться домой"
-    show white_bg
-    e "(Как же жаль что этот бедный малый не знает что это ложь)"
-    e "(Моя цель оставить его тут навечно)"
-    e "(Всего пара правильно нажатых кнопок и он будет тут навечно)"
-    e "(Ой, каких еще кнопок я же не в игре)"
-    e "(ХИХИ)"
-    hide eve happy spite top with fade
-    scene white_bg with dissolve
-    show eve happy sprite full with dissolve
-    e "Пошли домой быстрее время не ждет"
-    hide eve happy sprite full with dissolve
-    "Ребята долго выбирались из окрестностей замка"
-    "Наконец они добрались до выхода, который был закрыт огромной дверью на ключ"
-    show eve happy sprite full with dissolve
-    e "Даня у тебя же есть ключ?"
     if points == 1:
-        s "Да, кажется я нашел его пока шел сюда"
-        hide eve happy sprite full
-        show eve happy spite top
-        e "НЕТ"
-        e "Ты не удешь от сюда"
-        s "Но почему??"
-        s "Что с тобой??"
-        e "ТЫ НЕ ДОЛЖЕН ПОКИНУТЬ ЭТО МЕСТО"
-        e "ТОЛЬКО ОДОЛЕВ МЕНЯ ТЫ СМОЖЕШЬ ВЫБРАТЬСЯ"
-        hide eve happy spite top
+        s "Да, кажется ответ верный"
+        hide eva_02_prof
+        show eva_01_full
+        s "Чтож теперь можно и поиграть"
+        hide eva_01_full with dissolve
+        show black_bg
 
         "Мини игра пин понг"
-        "Необходим второй  игрок для игры за Эвелину"
+        "Необходим второй  игрок для игры за Второго персонажа"
         jump pong
 
     else:
-        s "Нет, кажется я ничего не находил"
-        e "ХАХА Я ТАК И ЗНАЛА ЧТО СМОГУ ОСТАВИТЬ ТЕБЯ ТУТ НАВСЕГДА"
+        e "Кстати игра не начнется потому что ответ был не верный"
         return
